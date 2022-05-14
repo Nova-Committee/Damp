@@ -34,7 +34,6 @@ public abstract class MixinCreeper extends LivingEntity {
             if (maxSwell - swell > 30) maxSwell--;
         } else {
             if (maxSwell < 2000) maxSwell++;
-            swell = oldSwell;
         }
     }
 }
