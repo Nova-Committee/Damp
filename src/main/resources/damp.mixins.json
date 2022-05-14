@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "committee.nova.damp.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinCreeper"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "damp.mixin-refmap.json",
+  "minVersion": "0.8"
+}
