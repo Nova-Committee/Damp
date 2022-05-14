@@ -22,8 +22,8 @@ public abstract class MixinCreeper extends LivingEntity {
     @Shadow
     private int oldSwell;
 
-    protected MixinCreeper(EntityType<? extends LivingEntity> p_20966_, Level p_20967_) {
-        super(p_20966_, p_20967_);
+    protected MixinCreeper(EntityType<? extends LivingEntity> e, Level w) {
+        super(e, w);
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
