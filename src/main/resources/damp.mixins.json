@@ -3,7 +3,8 @@
   "package": "committee.nova.damp.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "MixinCreeper"
+    "MixinCreeper",
+    "MixinPrimedTnt"
   ],
   "injectors": {
     "defaultRequire": 1
