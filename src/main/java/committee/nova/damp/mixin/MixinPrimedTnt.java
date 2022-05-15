@@ -1,5 +1,6 @@
 package committee.nova.damp.mixin;
 
+import committee.nova.damp.Damp;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -17,7 +18,7 @@ public abstract class MixinPrimedTnt extends Entity {
     public abstract int getFuse();
 
     @Shadow
-    public abstract void setFuse(int p_32086_);
+    public abstract void setFuse(int i);
 
     public MixinPrimedTnt(EntityType<?> e, Level w) {
         super(e, w);
@@ -25,12 +26,13 @@ public abstract class MixinPrimedTnt extends Entity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     public void onTick(CallbackInfo ci) {
+        if (getPersistentData().getBoolean("no_dampness")) return;
         final int fuse = getFuse();
         if (!level.isRainingAt(new BlockPos(getEyePosition().add(0, 1, 0)))) {
             if (fuse <= 80 || (random.nextInt(2) & 1) == 0) return;
             setFuse(fuse - 1);
         } else {
-            if (fuse < 2000) setFuse(fuse + 1);
+            if (fuse < Damp.tntMaxFuse.get()) setFuse(fuse + 1);
         }
     }
 }
