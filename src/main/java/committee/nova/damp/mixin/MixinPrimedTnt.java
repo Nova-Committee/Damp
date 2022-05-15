@@ -25,13 +25,14 @@ public abstract class MixinPrimedTnt extends Entity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     public void onTick(CallbackInfo ci) {
+        if (!Damp.tntDampness.get()) return;
         if (getPersistentData().getBoolean("no_dampness")) return;
         final int fuse = getFuse();
         if (!isInWaterOrRain()) {
             if (fuse <= 80 || (random.nextInt(2) & 1) == 0) return;
             setFuse(fuse - 1);
-        } else {
-            if (fuse < Damp.tntMaxFuse.get()) setFuse(fuse + 1);
+            return;
         }
+        if (fuse < Damp.tntMaxFuse.get()) setFuse(fuse + 1);
     }
 }

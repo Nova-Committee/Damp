@@ -25,14 +25,15 @@ public abstract class MixinCreeper extends LivingEntity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     public void onTick(CallbackInfo ci) {
+        if (!Damp.creeperDampness.get()) return;
         if (!this.isAlive()) return;
         if (getPersistentData().getBoolean("no_dampness")) return;
         if (!isInWaterOrRain()) {
             if (maxSwell <= 30 || (random.nextInt(2) & 1) == 0) return;
             if (maxSwell - swell > 30) maxSwell--;
-        } else {
-            if (maxSwell < Damp.creeperMaxSwell.get()) maxSwell++;
-            if (swell % 120 == 119) swell = 0;
+            return;
         }
+        if (maxSwell < Damp.creeperMaxSwell.get()) maxSwell++;
+        if (swell % 120 == 119) swell = 0;
     }
 }

@@ -11,13 +11,19 @@ import net.minecraftforge.fml.config.ModConfig;
 public class Damp {
     public static final String MODID = "damp";
     public static final ForgeConfigSpec COMMON_CONFIG;
+    public static final ForgeConfigSpec.BooleanValue creeperDampness;
+    public static final ForgeConfigSpec.BooleanValue tntDampness;
     public static final ForgeConfigSpec.IntValue creeperMaxSwell;
     public static final ForgeConfigSpec.IntValue tntMaxFuse;
 
     static {
         final var builder = new ForgeConfigSpec.Builder();
         builder.comment("QuickPlant Configuration");
-        creeperMaxSwell = builder.comment("Damp Configuration", "What's the max fuse time when the creeper reaches his max dampness")
+        creeperDampness = builder.comment("Damp Configuration", "Activate creeper dampness")
+                .define("creeper_dampness", true);
+        tntDampness = builder.comment("Activate TNT dampness")
+                .define("tnt_dampness", true);
+        creeperMaxSwell = builder.comment("What's the max fuse time when the creeper reaches his max dampness")
                 .defineInRange("creeper_swell", 2000, 100, Integer.MAX_VALUE);
         tntMaxFuse = builder.comment("What's the max fuse time when the primed tnt reaches his max dampness")
                 .defineInRange("tnt_fuse", 2000, 100, Integer.MAX_VALUE);
