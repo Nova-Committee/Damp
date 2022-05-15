@@ -1,7 +1,6 @@
 package committee.nova.damp.mixin;
 
 import committee.nova.damp.Damp;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Creeper;
@@ -28,7 +27,7 @@ public abstract class MixinCreeper extends LivingEntity {
     public void onTick(CallbackInfo ci) {
         if (!this.isAlive()) return;
         if (getPersistentData().getBoolean("no_dampness")) return;
-        if (!level.isRainingAt(new BlockPos(getEyePosition().add(0, 1, 0)))) {
+        if (!isInWaterOrRain()) {
             if (maxSwell <= 30 || (random.nextInt(2) & 1) == 0) return;
             if (maxSwell - swell > 30) maxSwell--;
         } else {
