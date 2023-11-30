@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "committee.nova.damp.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "damp.refmap.json",
+  "mixins": [
+    "MixinCreeper",
+    "MixinPrimedTnt"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
